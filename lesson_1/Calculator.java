@@ -14,7 +14,10 @@ public class Calculator {
         } else if (operation == '/') {
             result = firstNumber / secondNumber;
         } else if (operation == '^') {
-            result = (int) Math.pow(firstNumber, secondNumber);
+            result = 1;
+            for (int i = 0; i < secondNumber; i++) {
+                result *= firstNumber;
+            }
         } else if (operation == '%') {
             result = firstNumber % secondNumber;
         }

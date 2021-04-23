@@ -8,6 +8,7 @@ public class Variable {
         double exactPi = 3.14159d;
         char firstLetter = 'A';
         boolean isWorking = false;
+        
         System.out.println(coreQuantity);
         System.out.println(cost);
         System.out.println(starQuantity);
