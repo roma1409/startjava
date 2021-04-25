@@ -1,27 +1,67 @@
 public class Wolf {
-    boolean isMale = false;
-    String name;
-    double weight;
-    byte age;
-    String color;
+    private boolean isMale = false;
+    private String name;
+    private double weight;
+    private byte age;
+    private String color;
 
-    void walk() {
+    public boolean isMale() {
+        return this.isMale;
+    }
+
+    public void setMale(boolean isMale) {
+        this.isMale = isMale;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getWeight() {
+        return this.weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public byte getAge() {
+        return this.age;
+    }
+
+    public void setAge(byte age) {
+        this.age = age;
+    }
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void walk() {
         System.out.println("I'm walking.");
     }
 
-    void sit() {
+    public void sit() {
         System.out.println("I'm sitting.");
     }
 
-    void run() {
+    public void run() {
         System.out.println("I'm running.");
     }
 
-    void howl() {
+    public void howl() {
         System.out.println("I'm howling.");
     }
 
-    void hunt() {
+    public void hunt() {
         System.out.println("I'm hunting.");
     }
 }
