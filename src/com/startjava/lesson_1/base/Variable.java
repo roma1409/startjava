@@ -1,3 +1,5 @@
+package com.startjava.lesson_1.base;
+
 public class Variable {
     public static void main(String[] args) {
         byte coreQuantity = 1;
