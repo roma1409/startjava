@@ -15,7 +15,7 @@ public class Jaeger {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setHeight(double height) {
@@ -23,7 +23,7 @@ public class Jaeger {
     }
 
     public double getHeight() {
-        return this.height;
+        return height;
     }
 
     public void move() {

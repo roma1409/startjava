@@ -4,23 +4,19 @@ public class CalculatorTest {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
-        int firstNumber;
-        char sign;
-        int secondNumber;
-        int result;
         String userAnswer;
 
         do {
             System.out.print("Введите первое число: ");
-            firstNumber = Integer.parseInt(scanner.nextLine());
+            int firstNumber = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Введите знак математической операции: ");
-            sign = scanner.nextLine().charAt(0);
+            char sign = scanner.nextLine().charAt(0);
             
             System.out.print("Введите второе число: ");
-            secondNumber = Integer.parseInt(scanner.nextLine());
+            int secondNumber = Integer.parseInt(scanner.nextLine());
 
-            result = calculator.calculate(sign, firstNumber, secondNumber);
+            int result = calculator.calculate(sign, firstNumber, secondNumber);
             System.out.format("%n%d %c %d = %d%n%n", firstNumber, sign, secondNumber, result);
 
             do {

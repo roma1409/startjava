@@ -1,10 +1,9 @@
 public class WolfTest {
     public static void main(String[] args) {
         Wolf hunter = new Wolf();
-        hunter.setMale(false);
         hunter.setName("hunter");
         hunter.setWeight(15.0d);
-        hunter.setAge((byte)4);
+        hunter.setAge((byte) 4);
         hunter.setColor("red");
 
         System.out.println(hunter.isMale());

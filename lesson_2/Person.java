@@ -1,5 +1,5 @@
 public class Person {
-    boolean isMale = false;
+    boolean isMale;
     String name = "Olya";
     int height = 170;
     double weight = 55.0d;

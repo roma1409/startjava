@@ -1,12 +1,12 @@
 public class Wolf {
-    private boolean isMale = false;
+    private boolean isMale;
     private String name;
     private double weight;
     private byte age;
     private String color;
 
     public boolean isMale() {
-        return this.isMale;
+        return isMale;
     }
 
     public void setMale(boolean isMale) {
@@ -14,7 +14,7 @@ public class Wolf {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -22,7 +22,7 @@ public class Wolf {
     }
 
     public double getWeight() {
-        return this.weight;
+        return weight;
     }
 
     public void setWeight(double weight) {
@@ -30,7 +30,7 @@ public class Wolf {
     }
 
     public byte getAge() {
-        return this.age;
+        return age;
     }
 
     public void setAge(byte age) {
@@ -38,7 +38,7 @@ public class Wolf {
     }
 
     public String getColor() {
-        return this.color;
+        return color;
     }
 
     public void setColor(String color) {

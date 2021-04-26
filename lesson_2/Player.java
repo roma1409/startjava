@@ -7,11 +7,11 @@ public class Player {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public int getNumber() {
-        return this.number;
+        return number;
     }
 
     public void setNumber(int number) {
