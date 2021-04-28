@@ -1,6 +1,8 @@
 package com.startjava.lesson_2_3_4.array;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ArrayTasks {
     public static void showTwoMinimalElements(int[] numbers) {
@@ -93,9 +95,142 @@ public class ArrayTasks {
         System.out.printf("[%d] = %d", index, maxNegativeNumber);
     }
 
+    public static void showMostFrequentNumber(int[] numbers) {
+        if (numbers.length == 0) {
+            throw new RuntimeException("Provide not empty array.");
+        }
+
+        Map<Integer, Integer> rates = new HashMap<>();
+        int maxFrequency = 0;
+        int maxFrequentNumber = 0;
+
+        for (int number : numbers) {
+            int value = 0;
+
+            if (rates.containsKey(number)) {
+                value = rates.get(number);
+            }
+
+            rates.put(number, ++value);
+
+            if (maxFrequency < value) {
+                maxFrequency++;
+                maxFrequentNumber = number;
+            }
+        }
+
+        System.out.printf("'%d' is found %d times in array: %s", maxFrequentNumber, maxFrequency, Arrays.toString(numbers));
+    }
+
+    public static void showMostFrequentNumber2(int[] numbers) {
+        if (numbers.length == 0) {
+            throw new RuntimeException("Provide not empty array.");
+        }
+
+        int maxFrequency = 0;
+        int maxFrequentNumber = 0;
+
+        for (int i = 0, numbersLength = numbers.length; i < numbersLength; i++) {
+            int currentFrequency = 1;
+            int number = numbers[i];
+
+            for (int j = i + 1; j < numbersLength; j++) {
+                if (number == numbers[j]) {
+                    currentFrequency++;
+                }
+            }
+            if (maxFrequency < currentFrequency) {
+                maxFrequency = currentFrequency;
+                maxFrequentNumber = number;
+            }
+        }
+
+        System.out.printf("'%d' is found %d times in array: %s", maxFrequentNumber, maxFrequency, Arrays.toString(numbers));
+    }
+
+    public static void showMaxNumber(int[] numbers) {
+        if (numbers.length == 0) {
+            throw new RuntimeException("Provide not empty array.");
+        }
+        int maxNumberIndex = 0;
+        for (int i = 1, length = numbers.length; i < length; i++) {
+            if (numbers[maxNumberIndex] < numbers[i]) {
+                maxNumberIndex = i;
+            }
+        }
+        System.out.printf("Max number is: [%d] = %d", maxNumberIndex, numbers[maxNumberIndex]);
+    }
+
+    public static void changeMinMaxElements(int[] numbers) {
+        if (numbers.length < 2) {
+            throw new RuntimeException("Provide array with length more than 1.");
+        }
+
+        int maxNumberIndex = 0;
+        int minNumberIndex = 0;
+        for (int i = 1, length = numbers.length; i < length; i++) {
+            if (numbers[maxNumberIndex] < numbers[i]) {
+                maxNumberIndex = i;
+            }
+            if (numbers[minNumberIndex] > numbers[i]) {
+                minNumberIndex = i;
+            }
+        }
+
+        int[] copy = Arrays.copyOf(numbers, numbers.length);
+
+        int tmp = copy[maxNumberIndex];
+        copy[maxNumberIndex] = copy[minNumberIndex];
+        copy[minNumberIndex] = tmp;
+
+        System.out.printf("Before: %s%n", Arrays.toString(numbers));
+        System.out.printf("After: %s%n", Arrays.toString(copy));
+    }
+
+    public static void shiftArrayBySteps(int[] numbers, int steps) {
+        int[] result = Arrays.copyOf(numbers, numbers.length);
+        if (steps != 0) {
+            for (int i = 0; i < Math.abs(steps); i++) {
+                if (steps > 0) {
+                    for (int length = numbers.length, j = length - 1; j > 0; j--) {
+                        result[j] = result[j - 1];
+                    }
+                } else {
+                    for (int length = numbers.length, j = 0; j < length - 1; j++) {
+                        result[j] = result[j + 1];
+                    }
+                }
+            }
+
+            if (steps > 0) {
+                    Arrays.fill(result, 0, steps, 0);
+            } else {
+                Arrays.fill(result, -steps + 1, numbers.length, 0);
+            }
+        }
+
+        System.out.printf("Before: %s%n", Arrays.toString(numbers));
+        System.out.printf("After: %s%n", Arrays.toString(result));
+    }
+
+    public static void showUniqueNumbers(int[] numbers) {
+        for (int i = 0; i < numbers.length; i++) {
+            boolean isUnique = true;
+            for (int j = 0; j < numbers.length; j++) {
+                if (i != j && numbers[i] == numbers[j]) {
+                    isUnique = false;
+                    break;
+                }
+            }
+            if (isUnique) {
+                System.out.println(numbers[i]);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] numbers = {-5, 8, 0, 1, 2, -8, 1};
 
-        showMaxNegativeNumber(numbers);
+        showUniqueNumbers(numbers);
     }
 }
