@@ -10,7 +10,7 @@ public class CalculatorTest {
 
         do {
             System.out.print("Введите математическое выражение: ");
-            String[] expressionParts = scanner.nextLine().trim().split("\s");
+            String[] expressionParts = scanner.nextLine().trim().split("\\s");
 
             int firstNumber = Integer.parseInt(expressionParts[0]);
             char sign = expressionParts[1].charAt(0);
