@@ -203,7 +203,7 @@ public class ArrayTasks {
             }
 
             if (steps > 0) {
-                    Arrays.fill(result, 0, steps, 0);
+                Arrays.fill(result, 0, steps, 0);
             } else {
                 Arrays.fill(result, -steps + 1, numbers.length, 0);
             }
@@ -228,9 +228,66 @@ public class ArrayTasks {
         }
     }
 
+    public static void reverse(int[] numbers) {
+        int[] reversedNumbers = Arrays.copyOf(numbers, numbers.length);
+        for (int i = 0, length = numbers.length / 2; i < length; i++) {
+            int tmp = reversedNumbers[i];
+            reversedNumbers[i] = reversedNumbers[numbers.length - 1 - i];
+            reversedNumbers[numbers.length - 1 - i] = tmp;
+        }
+        System.out.printf("Before: %s%n", Arrays.toString(numbers));
+        System.out.printf("After: %s%n", Arrays.toString(reversedNumbers));
+    }
+
+    public static void showMaxByAbsNumber(int[] numbers) {
+        if (numbers.length == 0) {
+            throw new RuntimeException("Pass not empty array.");
+        }
+
+        int maxByAbs = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            if (Math.abs(maxByAbs) < Math.abs(numbers[i])) {
+                maxByAbs = numbers[i];
+            }
+        }
+        System.out.println(maxByAbs);
+    }
+
+    public static void showSumOfEvenPositiveNumbers(int[] numbers) {
+        int sum = 0;
+
+        for (int number : numbers) {
+            if (number % 2 == 0 && number > 0) {
+                sum += number;
+            }
+        }
+
+        System.out.println(sum);
+    }
+
+    public static void findMaxNumberWithEvenIndex(int[] numbers) {
+        if (numbers.length == 0) {
+            throw new RuntimeException("Pass not empty array.");
+        }
+
+        int maxNumber = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            if (i % 2 == 0 && maxNumber < numbers[i]) {
+                maxNumber = numbers[i];
+            }
+        }
+        System.out.println(maxNumber);
+    }
+
+    public static void showLessThanAverageNumbers(int[] numbers) {
+        int average = Arrays.stream(numbers).reduce(0, Integer::sum) / numbers.length;
+        System.out.println("Average: " + average);
+        Arrays.stream(numbers).filter(number -> number < average).forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         int[] numbers = {-5, 8, 0, 1, 2, -8, 1};
 
-        showUniqueNumbers(numbers);
+        showLessThanAverageNumbers(numbers);
     }
 }
