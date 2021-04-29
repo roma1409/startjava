@@ -3,7 +3,6 @@ package com.startjava.lesson_2_3_4.game;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class GuessNumber {
     private final int ATTEMPT_QUANTITY = 10;
@@ -27,7 +26,7 @@ public class GuessNumber {
     private void guessProcess() {
         Random random = new Random();
         targetNumber = random.nextInt(100) + 1;
-        System.out.printf("%nУ каждого игрока %d попыток.%n", ATTEMPT_QUANTITY);
+        System.out.printf("У каждого игрока %d попыток.%n", ATTEMPT_QUANTITY);
 
         while (step < ATTEMPT_QUANTITY) {
             step++;
@@ -47,19 +46,23 @@ public class GuessNumber {
     }
 
     private void showEnteredNumbers() {
-        int[] firstPlayerNumbers = Arrays.copyOf(firstPlayer.getNumbers(), step);
-        int[] secondPlayerNumbers = Arrays.copyOf(secondPlayer.getNumbers(), isFirstPlayerWinner ? step - 1 : step);
+        int[] firstPlayerNumbers = firstPlayer.getNumbers(step);
+        int secondPlayerAttemptQuantity = isFirstPlayerWinner ? step - 1 : step;
+        int[] secondPlayerNumbers = secondPlayer.getNumbers(secondPlayerAttemptQuantity);
 
-        String formattedFirstPlayerNumbers = numbersToString(firstPlayerNumbers);
-        String formattedSecondPlayerNumbers = numbersToString(secondPlayerNumbers);
-
-        System.out.printf("%s - %s%n", firstPlayer.getName(), formattedFirstPlayerNumbers);
-        System.out.printf("%s - %s%n", secondPlayer.getName(), formattedSecondPlayerNumbers);
+        System.out.printf("%s: ", firstPlayer.getName());
+        Arrays.stream(firstPlayerNumbers)
+                .forEach(firstPlayerNumber -> System.out.printf("%d ", firstPlayerNumber));
+        System.out.println();
+        System.out.printf("%s: ", secondPlayer.getName());
+        Arrays.stream(secondPlayerNumbers)
+                .forEach(firstPlayerNumber -> System.out.printf("%d ", firstPlayerNumber));
+        System.out.println();
     }
 
     public void resetProgress() {
-        Arrays.fill(firstPlayer.getNumbers(), 0, step, 0);
-        Arrays.fill(secondPlayer.getNumbers(), 0, step, 0);
+        firstPlayer.resetNumbers(step);
+        firstPlayer.resetNumbers(step);
         isFirstPlayerWinner = false;
         step = 0;
     }
@@ -69,29 +72,24 @@ public class GuessNumber {
 
         System.out.printf("Player(%s) attempt: ", player.getName());
         int playerNumber = scanner.nextInt();
-        player.setNumber(step - 1, playerNumber);
+        player.setCurrentNumber(step - 1, playerNumber);
 
         return checkNumber(player);
     }
 
     private boolean checkNumber(Player player) {
         boolean isNumberCorrect = false;
-        int playerNumber = player.getNumber(step - 1);
+        int playerNumber = player.getCurrentNumber(step - 1);
 
-        String message = "";
-        message = playerNumber > targetNumber ? "Данное число больше того, что загадал компьютер." : "Данное число меньше того, что загадал компьютер.";
+        String message;
         if (playerNumber == targetNumber) {
-            message = String.format("Игрок %s угадал число %d с %d попытки.%n", player.getName(), targetNumber, step);
+            message = String.format("Игрок %s угадал число %d с %d попытки.", player.getName(), targetNumber, step);
             isNumberCorrect = true;
+        } else {
+            message = String.format("Данное число %s того, что загадал компьютер.", playerNumber > targetNumber ? "больше" : "меньше");
         }
         System.out.println(message);
 
         return isNumberCorrect;
-    }
-
-    private String numbersToString(int[] numbers) {
-        return Arrays.stream(numbers)
-                .mapToObj(String::valueOf)
-                .collect(Collectors.joining(" "));
     }
 }

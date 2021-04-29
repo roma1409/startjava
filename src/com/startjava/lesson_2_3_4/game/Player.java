@@ -15,15 +15,19 @@ public class Player {
         return name;
     }
 
-    public int[] getNumbers() {
-        return Arrays.copyOf(numbers, numbers.length);
+    public int[] getNumbers(int newLength) {
+        return Arrays.copyOf(numbers, newLength);
     }
 
-    public void setNumber(int index, int number) {
+    public void setCurrentNumber(int index, int number) {
         numbers[index] = number;
     }
 
-    public int getNumber(int index) {
+    public int getCurrentNumber(int index) {
         return numbers[index];
+    }
+
+    public void resetNumbers(int toIndex) {
+        Arrays.fill(numbers, 0, toIndex, 0);
     }
 }

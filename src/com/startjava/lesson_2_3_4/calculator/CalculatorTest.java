@@ -17,7 +17,7 @@ public class CalculatorTest {
             int secondNumber = Integer.parseInt(expressionParts[2]);
 
             int result = calculator.calculate(sign, firstNumber, secondNumber);
-            System.out.format("%n%d %c %d = %d%n%n", firstNumber, sign, secondNumber, result);
+            System.out.printf("%d %c %d = %d%n", firstNumber, sign, secondNumber, result);
 
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
