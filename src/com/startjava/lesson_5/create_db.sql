@@ -10,4 +10,5 @@ CREATE TABLE IF NOT EXISTS jaegers (
     status VARCHAR(20),
     origin VARCHAR(20),
     launch DATE,
-    kaiju_kill integer);
+    kaiju_kill integer
+);
