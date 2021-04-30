@@ -285,9 +285,92 @@ public class ArrayTasks {
         Arrays.stream(numbers).filter(number -> number < average).forEach(System.out::println);
     }
 
+    public static void insert(int[] numbers, int index, int value) {
+        int[] newArray = new int[numbers.length + 1];
+        System.arraycopy(numbers, 0, newArray, 0, index);
+        newArray[index] = value;
+        System.arraycopy(numbers, index, newArray, index + 1, numbers.length - index);
+
+        System.out.println("Before: " + Arrays.toString(numbers));
+        System.out.println("After: " + Arrays.toString(newArray));
+    }
+
+    public static void separateToPositiveAndNegative(int[] numbers) {
+        int positiveQuantity = 0;
+        int negativeQuantity = 0;
+        for (int number : numbers) {
+            positiveQuantity = number > 0 ? positiveQuantity + 1 : positiveQuantity;
+            negativeQuantity = number < 0 ? negativeQuantity + 1 : negativeQuantity;
+        }
+        int[] positiveNumbers = new int[positiveQuantity];
+        int[] negativeNumbers = new int[negativeQuantity];
+        for (int i = 0, j = 0, k = 0; i < numbers.length; i++) {
+            if (numbers[i] > 0) {
+                positiveNumbers[j++] = numbers[i];
+            }
+            if (numbers[i] < 0) {
+                negativeNumbers[k++] = numbers[i];
+            }
+        }
+        System.out.println("+: " + Arrays.toString(positiveNumbers));
+        System.out.println("-: " + Arrays.toString(negativeNumbers));
+    }
+
+    public static void selectionSort(int[] numbers) {
+        int[] copy = Arrays.copyOf(numbers, numbers.length);
+        for (int i = 0; i < copy.length; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < copy.length; j++) {
+                if (copy[j] < copy[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            int tmp = copy[i];
+            copy[i] = copy[minIndex];
+            copy[minIndex] = tmp;
+        }
+
+        System.out.println("Before: " + Arrays.toString(numbers));
+        System.out.println("After: " + Arrays.toString(copy));
+    }
+
+    public static void bubbleSort(int[] numbers) {
+        int[] copy = Arrays.copyOf(numbers, numbers.length);
+
+        boolean alreadySorted = false;
+        while (!alreadySorted) {
+            alreadySorted = true;
+            for (int i = 0; i < copy.length -1; i++) {
+                if (copy[i+1] < copy[i]) {
+                    int tmp = copy[i+1];
+                    copy[i+1] = copy[i];
+                    copy[i] = tmp;
+                    alreadySorted = false;
+                }
+            }
+        }
+
+        System.out.println("Before: " + Arrays.toString(numbers));
+        System.out.println("After: " + Arrays.toString(copy));
+    }
+
+    public static void multipleNumbers() {
+        int[] multipleNumbers = new int[100];
+        for (int i = 2; i < multipleNumbers.length; i++) {
+            System.out.printf("%d: ", i);
+            for (int j = 2; j < 10; j++) {
+                if (i % j == 0) {
+                    multipleNumbers[i]++;
+                    System.out.printf("%d ", j);
+                }
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         int[] numbers = {-5, 8, 0, 1, 2, -8, 1};
 
-        showLessThanAverageNumbers(numbers);
+        multipleNumbers();
     }
 }
