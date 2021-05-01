@@ -340,10 +340,10 @@ public class ArrayTasks {
         boolean alreadySorted = false;
         while (!alreadySorted) {
             alreadySorted = true;
-            for (int i = 0; i < copy.length -1; i++) {
-                if (copy[i+1] < copy[i]) {
-                    int tmp = copy[i+1];
-                    copy[i+1] = copy[i];
+            for (int i = 0; i < copy.length - 1; i++) {
+                if (copy[i + 1] < copy[i]) {
+                    int tmp = copy[i + 1];
+                    copy[i + 1] = copy[i];
                     copy[i] = tmp;
                     alreadySorted = false;
                 }
@@ -368,9 +368,39 @@ public class ArrayTasks {
         }
     }
 
+    public static void count(int[] numbers) {
+        int positiveQuantity = 0;
+        int negativeQuantity = 0;
+        int zeroQuantity = 0;
+        for (int number : numbers) {
+            if (number > 0) {
+                positiveQuantity++;
+            } else if (number < 0) {
+                negativeQuantity++;
+            } else {
+                zeroQuantity++;
+            }
+        }
+        System.out.printf("'+': %d, '-': %d, '0': %d", positiveQuantity, negativeQuantity, zeroQuantity);
+    }
+
+    public static void showSumAndMultiplication(int[] numbers) {
+        if (numbers.length == 0) {
+            throw new RuntimeException("Pass not empty array.");
+        }
+
+        int sum = 0;
+        int multiplication = 1;
+        for (int number : numbers) {
+            multiplication *= number;
+            sum += number;
+        }
+        System.out.printf("'+': %d, '*': %d", sum, multiplication);
+    }
+
     public static void main(String[] args) {
         int[] numbers = {-5, 8, 0, 1, 2, -8, 1};
 
-        multipleNumbers();
+        showSumAndMultiplication(numbers);
     }
 }
